@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Satset Bersih Sidoarjo</title>
+
+<style>
+:root{
+--primary:#0f172a;
+--accent:#25d366;
+--bg:#f8fafc;
+--text:#1e293b;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:0 20px;
+}
+
+/* HERO */
+.hero{
+height:90vh;
+background:url("images_1/lokasi.jpeg") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+position:relative;
+}
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+}
+.hero-content{position:relative;z-index:2;}
+.hero h1{font-size:38px;}
+.badge{
+background:gold;
+padding:8px 15px;
+border-radius:20px;
+margin-bottom:10px;
+display:inline-block;
+}
+
+.btn{
+background:var(--accent);
+padding:14px 25px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+display:inline-block;
+margin-top:15px;
+}
+
+/* SECTION */
+.section{
+padding:80px 0;
+text-align:center;
+}
+h2{margin-bottom:30px;}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+/* CARD */
+.card{
+background:white;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+cursor:pointer;
+transition:0.3s;
+}
+.card:hover{transform:translateY(-5px);}
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+.card span{
+display:block;
+padding:10px;
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.95);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:1000;
+}
+.lightbox img{
+max-width:90%;
+max-height:70%;
+border-radius:12px;
+}
+.close{
+position:absolute;
+top:20px;
+right:30px;
+font-size:30px;
+color:white;
+cursor:pointer;
+}
+.consult{
+margin-top:20px;
+background:#25d366;
+padding:14px 25px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* FORM */
+input,select{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+/* ACCORDION QNA */
+.qna{
+max-width:700px;
+margin:auto;
+text-align:left;
+}
+.qna-item{
+background:white;
+margin-bottom:10px;
+border-radius:10px;
+padding:15px;
+cursor:pointer;
+}
+.qna-item p{
+display:none;
+margin-top:10px;
+}
+
+/* MAP */
+.map iframe{
+width:100%;
+height:350px;
+border:none;
+border-radius:16px;
+}
+
+/* WA */
+.wa{
+position:fixed;
+bottom:80px;
+right:20px;
+background:#25d366;
+padding:12px;
+border-radius:50%;
+}
+.wa img{width:28px;}
+
+/* CTA */
+.cta{
+position:fixed;
+bottom:0;
+width:100%;
+background:#25d366;
+padding:12px;
+text-align:center;
+}
+.cta a{
+color:white;
+font-weight:bold;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<div class="badge">⭐ 100+ Pelanggan Puas</div>
+<h1>Satset Bersih Sidoarjo</h1>
+<p>Jasa Cleaning Profesional</p>
+<a class="btn" href="https://wa.me/6289608263190">Pesan Sekarang</a>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section class="section container">
+<h2>Hasil & Kualitas Kami</h2>
+<div class="grid">
+
+<div class="card"><img src="images_1/hero.jpeg"><span>Tim Profesional</span></div>
+<div class="card"><img src="images_1/rumah.jpeg"><span>Rumah Bersih</span></div>
+<div class="card"><img src="images_1/km.jpeg"><span>Kamar Mandi</span></div>
+<div class="card"><img src="images_1/tips1.jpeg"><span>Tips & Edukasi</span></div>
+<div class="card"><img src="images_1/harga.jpeg"><span>Harga</span></div>
+<div class="card"><img src="images_1/testimoni.jpeg"><span>Testimoni</span></div>
+<div class="card"><img src="images_1/legal.jpeg"><span>Legalitas</span></div>
+
+</div>
+</section>
+
+<!-- BOOKING -->
+<section class="section container">
+<h2>Booking Cepat</h2>
+
+<input id="nama" placeholder="Nama">
+<input id="lokasi" placeholder="Alamat">
+
+<select id="layanan">
+<option>General Cleaning</option>
+<option>Deep Cleaning</option>
+<option>Premium Kamar Mandi</option>
+</select>
+
+<button class="btn" onclick="kirimWA()">Booking Sekarang</button>
+
+</section>
+
+<!-- QNA -->
+<section class="section container">
+<h2>Pertanyaan Umum</h2>
+
+<div class="qna">
+
+<div class="qna-item" onclick="toggle(this)">
+<b>1. General cleaning meliputi treatment apa aja kak?</b>
+<p>Meliputi lap furnitur, sapu/vakum mini, pel lantai, dan merapikan barang.</p>
+</div>
+
+<div class="qna-item" onclick="toggle(this)">
+<b>2. Pengerjaan dilakukan oleh siapa kak?</b>
+<p>Dikerjakan tim profesional yang detail, rapi, dan bertanggung jawab.</p>
+</div>
+
+<div class="qna-item" onclick="toggle(this)">
+<b>3. Apa itu premium kamar mandi?</b>
+<p>Pembersihan kamar mandi dengan chemical keras untuk menghilangkan kerak lama atau jamur tanpa merusak.</p>
+</div>
+
+<div class="qna-item" onclick="toggle(this)">
+<b>4. Apa saja yang tidak include general cleaning?</b>
+<p>Tidak melayani cuci pakaian dan melipat pakaian.</p>
+</div>
+
+<div class="qna-item" onclick="toggle(this)">
+<b>5. Apakah ada diskon kak?</b>
+<p>Ada diskon free ongkir jika berkenan memberikan bintang 5 di Google Maps.</p>
+</div>
+</div>
+
+</section>
+
+<!-- REVIEW GOOGLE -->
+<section class="section container">
+<h2>Review Google</h2>
+
+<div class="grid">
+<div class="card"><img src="images_1/google.jpeg"><span>Rating Google</span></div>
+<div class="card"><img src="images_1/testimoni.jpeg"><span>Customer Review</span></div>
+</div>
+
+</section>
+
+<!-- MAP -->
+<section class="section container">
+<h2>Lokasi Kami</h2>
+
+<div class="map">
+<iframe src="https://www.google.com/maps?q=Satset+Bersih,+Permata,+Jl.+Candiloka+Utara+P2+No.5,+Balonggabus,+Candi,+Sidoarjo&output=embed"></iframe>
+</div>
+
+<br>
+
+<a class="btn" href="https://maps.app.goo.gl/87Zmn3ijs2oDPmNG8" target="_blank">
+📍 Buka Maps
+</a>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+<span class="close" onclick="closeLightbox()">×</span>
+<img id="imgBox">
+<a href="https://wa.me/6289608263190" class="consult">💬 Konsultasi</a>
+</div>
+
+<!-- WA -->
+<a href="https://wa.me/6289608263190" class="wa">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+</a>
+
+<!-- CTA -->
+<div class="cta">
+<a href="https://wa.me/6289608263190">🔥 Pesan Sekarang via WhatsApp</a>
+</div>
+
+<script>
+// LIGHTBOX
+document.querySelectorAll('.card img').forEach(img=>{
+img.onclick=()=>{
+lightbox.style.display="flex";
+imgBox.src=img.src;
+}
+});
+function closeLightbox(){lightbox.style.display="none";}
+
+// FORM
+function kirimWA(){
+let nama=nama.value;
+let lokasi=lokasi.value;
+let layanan=layanan.value;
+let text=`Halo Admin,%0A Nama:${nama}%0A Lokasi:${lokasi}%0A Layanan:${layanan}`;
+window.open(`https://wa.me/6289608263190?text=${text}`);
+}
+
+// QNA
+function toggle(el){
+let p=el.querySelector("p");
+p.style.display=p.style.display==="block"?"none":"block";
+}
+</script>
+
+</body>
+</html>
